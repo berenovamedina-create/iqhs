@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQ Verse - Школьный портал</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 50%, #d4a5d4 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+        }
+
+        .header-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content p {
+            font-size: 1em;
+            opacity: 0.95;
+        }
+
+        .user-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4a5d4 0%, #c98fb5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav button {
+            padding: 11px 22px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: white;
+            color: #8a7aa0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        nav button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+        }
+
+        nav button.active {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            color: #8a7aa0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #d4a5d4;
+            padding-bottom: 10px;
+            font-size: 1.6em;
+        }
+
+        /* FLOATING BUTTONS */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .float-messenger {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .float-polls {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        /* CREDITS SECTION */
+        .credits-section {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 50%, #d4a5d4 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .credits-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .credits-header h3 {
+            font-size: 1.3em;
+            margin: 0;
+        }
+
+        .total-credits {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .credits-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .stat-badge .stat-number {
+            font-size: 1.6em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-badge .stat-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        /* CLUB CARD WITH CREDITS */
+        .club-item {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid #9b8ab8;
+        }
+
+        .club-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .club-info {
+            flex: 1;
+        }
+
+        .club-info h3 {
+            margin: 0 0 6px 0;
+            color: #333;
+            font-size: 1.05em;
+            font-weight: 600;
+        }
+
+        .club-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .club-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .credit-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .credit-badge {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 90px;
+            box-shadow: 0 4px 12px rgba(154, 138, 184, 0.3);
+        }
+
+        .credit-value {
+            font-size: 1.8em;
+            display: block;
+        }
+
+        .credit-label {
+            font-size: 0.75em;
+            opacity: 0.9;
+        }
+
+        .credit-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .credit-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #9b8ab8;
+            background: #f5f5f5;
+            color: #9b8ab8;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .credit-btn:hover {
+            background: #9b8ab8;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .credit-btn.plus {
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+
+        .credit-btn.plus:hover {
+            background: #4caf50;
+            color: white;
+        }
+
+        .club-join-btn {
+            background: #d4a5d4;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .club-join-btn:hover {
+            background: #c98fb5;
+            transform: scale(1.05);
+        }
+
+        .club-join-btn.joined {
+            background: #7cb342;
+        }
+
+        /* ORDS SECTION */
+        .ords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .ord-card {
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .ord-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .ord-card h3 {
+            margin: 10px 0 5px 0;
+            font-size: 1.2em;
+        }
+
+        .ord-card .rank {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .ord-card .points {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* EVENTS */
+        .event-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 5px solid #9b8ab8;
+        }
+
+        .event-item h4 {
+            color: #8a7aa0;
+            margin-bottom: 5px;
+        }
+
+        .event-item p {
+            color: #666;
+            margin: 3px 0;
+            font-size: 0.9em;
+        }
+
+        /* LESSON CARD */
+        .lesson-card {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 18px rgba(154, 138, 184, 0.3);
+        }
+
+        .lesson-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .lesson-card p {
+            opacity: 0.92;
+            font-size: 0.95em;
+        }
+
+        /* HOMEWORK CARD */
+        .homework-card {
+            background: linear-gradient(135deg, #d4a5d4 0%, #c98fb5 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .homework-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 18px rgba(212, 165, 212, 0.3);
+        }
+
+        .homework-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .homework-card .deadline {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* STUDENT PROFILE */
+        .student-profile {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .profile-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 50%, #d4a5d4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5em;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+        }
+
+        .profile-info h3 {
+            color: #8a7aa0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .profile-info p {
+            margin-bottom: 8px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #8a7aa0;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            margin-top: 20px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #d4a5d4;
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: #8a7aa0;
+            font-size: 1.5em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #8a7aa0;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .modal-body p {
+            margin-bottom: 10px;
+        }
+
+        .modal-body input,
+        .modal-body textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .modal-body button {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .modal-body button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(154, 138, 184, 0.3);
+        }
+
+        .teacher-info {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: #8a7aa0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d4a5d4;
+            padding-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .sidebar-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #d4a5d4 0%, #c98fb5 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .sidebar-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .control-item {
+            background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .control-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* ACHIEVEMENT NOTIFICATION */
+        .achievement-unlock {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            display: none;
+        }
+
+        .achievement-unlock.show {
+            display: block;
+            animation: slideInRight 0.5s ease, slideOutRight 0.5s ease 4.5s forwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+            }
+
+            .header-content h1 {
+                font-size: 1.8em;
+            }
+
+            nav {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .student-profile {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 2.8em;
+            }
+
+            .user-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2em;
+            }
+
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .ords-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo-section">
+                <div class="logo-img">
+                    🌐
+                </div>
+                <div class="header-content">
+                    <h1>IQ Verse</h1>
+                    <p>Образовательный портал</p>
+                </div>
+            </div>
+            <div class="user-avatar">👤</div>
+        </header>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <button class="nav-btn active" data-section="dashboard">📊 Главная</button>
+            <button class="nav-btn" data-section="lessons">📚 Уроки</button>
+            <button class="nav-btn" data-section="homework">📝 Задания</button>
+            <button class="nav-btn" data-section="profile">👨‍🎓 Профиль</button>
+            <button class="nav-btn" data-section="clubs">🎨 Кружки</button>
+            <button class="nav-btn" data-section="ords">🏛️ Орды</button>
+            <button class="nav-btn" data-section="calendar">📅 Календарь</button>
+            <button class="nav-btn" data-section="grades">📊 Оценки</button>
+        </nav>
+
+        <div class="main-content">
+            <!-- MAIN AREA -->
+            <div>
+                <!-- DASHBOARD -->
+                <section id="dashboard" class="section active">
+                    <h2>📊 Главная панель</h2>
+                    
+                    <h3 style="color: #8a7aa0; margin-top: 20px; margin-bottom: 15px;">Ближайшие уроки:</h3>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Математика')">
+                        <h3>📐 Математика</h3>
+                        <p>📍 Кабинет 302 | ⏰ 09:00</p>
+                        <p>Учитель: Макпал устаз</p>
+                    </div>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Английский язык')">
+                        <h3>🌍 Английский язык</h3>
+                        <p>📍 Кабинет 401 | ⏰ 10:45</p>
+                        <p>Учитель: Диана устаз</p>
+                    </div>
+
+                    <h3 style="color: #c98fb5; margin-top: 30px; margin-bottom: 15px;">Активные задания:</h3>
+                    <div class="homework-card" onclick="openModal('homework', 'Контрольная по алгебре')">
+                        <h3>Контрольная по алгебре</h3>
+                        <p>Математика</p>
+                        <div class="deadline">⏰ До 25 февраля</div>
+                    </div>
+                    <div class="homework-card" onclick="openModal('homework', 'Сочинение')">
+                        <h3>Написать сочинение</h3>
+                        <p>Литература</p>
+                        <div class="deadline">⏰ До 28 февраля</div>
+                    </div>
+                </section>
+
+                <!-- LESSONS -->
+                <section id="lessons" class="section">
+                    <h2>📚 Расписание уроков</h2>
+                    
+                    <h3 style="color: #8a7aa0; margin-top: 20px; margin-bottom: 15px;">Понедельник:</h3>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Русский язык')">
+                        <h3>📖 Русский язык</h3>
+                        <p>09:00 - 09:45 | Кабинет 205</p>
+                        <p>Учитель: Адиля устаз</p>
+                    </div>
+                    <div class="lesson-card" onclick="openModal('lesson', 'История')">
+                        <h3>📜 История</h3>
+                        <p>10:00 - 10:45 | Кабинет 308</p>
+                        <p>Учитель: Азамат устаз</p>
+                    </div>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Физкультура')">
+                        <h3>⚽ Физкультура</h3>
+                        <p>12:00 - 12:45 | Спортзал</p>
+                        <p>Учитель: Нурбек устаз</p>
+                    </div>
+
+                    <h3 style="color: #8a7aa0; margin-top: 30px; margin-bottom: 15px;">Вторник:</h3>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Математика')">
+                        <h3>📐 Математика</h3>
+                        <p>09:00 - 09:45 | Кабинет 302</p>
+                        <p>Учитель: Макпал устаз</p>
+                    </div>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Биология')">
+                        <h3>🔬 Биология</h3>
+                        <p>10:00 - 10:45 | Кабинет 412</p>
+                        <p>Учитель: Анна Морозова</p>
+                    </div>
+                    <div class="lesson-card" onclick="openModal('lesson', 'Информатика')">
+                        <h3>💻 Информатика</h3>
+                        <p>11:00 - 11:45 | Кабинет 501</p>
+                        <p>Учитель: Медет устаз</p>
+                    </div>
+                </section>
+
+                <!-- HOMEWORK -->
+                <section id="homework" class="section">
+                    <h2>📝 Домашнее задание</h2>
+                    
+                    <div class="homework-card" onclick="openModal('homework', 'Упражнение 45-50')">
+                        <h3>🔢 Математика: Упражнение 45-50</h3>
+                        <p>Решить задачи по алгебре на странице 127</p>
+                        <div class="deadline">⏰ До 24 февраля</div>
+                    </div>
+
+                    <div class="homework-card" onclick="openModal('homework', 'Параграфы 15-17')">
+                        <h3>📖 История: Параграфы 15-17</h3>
+                        <p>Прочитать и составить конспект</p>
+                        <div class="deadline">⏰ До 25 февраля</div>
+                    </div>
+
+                    <div class="homework-card" onclick="openModal('homework', 'Exercises 5-10')">
+                        <h3>🌍 Английский: Exercises 5-10</h3>
+                        <p>Выполнить упражнения в рабочей тетради</p>
+                        <div class="deadline">⏰ До 26 февраля</div>
+                    </div>
+
+                    <div class="homework-card" onclick="openModal('homework', 'Практическая работа')">
+                        <h3>🔬 Биология: Практическая работа</h3>
+                        <p>Подготовить отчет по лабораторной работе №5</p>
+                        <div class="deadline">⏰ До 28 февраля</div>
+                    </div>
+
+                    <div class="homework-card" onclick="openModal('homework', 'Программа на Python')">
+                        <h3>💻 Информатика: Программа на Python</h3>
+                        <p>Написать программу для вычисления факториала</p>
+                        <div class="deadline">⏰ До 27 февраля</div>
+                    </div>
+                </section>
+
+                <!-- PROFILE -->
+                <section id="profile" class="section">
+                    <h2>👨‍🎓 Профиль ученика</h2>
+                    
+                    <div class="student-profile">
+                        <div class="profile-avatar">🎓</div>
+                        <div class="profile-info">
+                            <h3>Калиева Жузим</h3>
+                            <p><span class="info-label">Класс:</span> 9 "С"</p>
+                            <p><span class="info-label">Возраст:</span> 15 лет</p>
+                            <p><span class="info-label">Орда:</span> Кумис орда</p>
+                            <p><span class="info-label">Email:</span> kalieva.zhuzim@edu.kz</p>
+                            <p><span class="info-label">Телефон:</span> +7 7772083432</p>
+                            <p><span class="info-label">Адрес:</span> Акмолинская обл. Астраханский р. с.Жалтыр</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color: #8a7aa0; margin-top: 30px; margin-bottom: 15px;">📊 Статистика успеваемости:</h3>
+                    <div style="background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%); color: white; padding: 18px; border-radius: 10px; margin-bottom: 15px;">
+                        <p><strong>Средний балл:</strong> 4.2 из 5</p>
+                        <p><strong>Отличные оценки (5):</strong> 12</p>
+                        <p><strong>Хорошие оценки (4):</strong> 18</p>
+                        <p><strong>Удовлетворительные (3):</strong> 5</p>
+                    </div>
+
+                    <h3 style="color: #8a7aa0; margin-top: 25px; margin-bottom: 15px;">🏆 Достижения:</h3>
+                    <div style="background: linear-gradient(135deg, #d4a5d4 0%, #c98fb5 100%); color: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                        🥇 Победительница школьной олимпиады по математике (2025)
+                    </div>
+                    <div style="background: linear-gradient(135deg, #d4a5d4 0%, #c98fb5 100%); color: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                        🏅 Участница конкурса азиатских культур
+                    </div>
+                    <div style="background: linear-gradient(135deg, #d4a5d4 0%, #c98fb5 100%); color: white; padding: 15px; border-radius: 10px;">
+                        ⭐ Отличница учебы
+                    </div>
+                </section>
+
+                <!-- CLUBS -->
+                <section id="clubs" class="section">
+                    <h2>🎨 Кружки и увлечения</h2>
+                    
+                    <div class="club-item">
+                        <div class="club-info">
+                            <h3>🧗 Скалолазание</h3>
+                            <p>Тренер: Нурбек устаз | ПН, СР, ПТ - 17:30</p>
+                        </div>
+                        <div class="club-controls">
+                            <div class="credit-display">
+                                <div class="credit-badge">
+                                    <span class="credit-value">15</span>
+                                    <span class="credit-label">баллов</span>
+                                </div>
+                            </div>
+                            <button class="club-join-btn joined">✓ Участник</button>
+                        </div>
+                    </div>
+
+                    <div class="club-item">
+                        <div class="club-info">
+                            <h3>🇨🇳 Китайский язык</h3>
+                            <p>Руководитель: Анель устаз | ВТ, ЧТ - 16:40</p>
+                        </div>
+                        <div class="club-controls">
+                            <div class="credit-display">
+                                <div class="credit-badge">
+                                    <span class="credit-value">12</span>
+                                    <span class="credit-label">баллов</span>
+                                </div>
+                            </div>
+                            <button class="club-join-btn joined">✓ Участник</button>
+                        </div>
+                    </div>
+
+                    <div class="club-item">
+                        <div class="club-info">
+                            <h3>🤖 Робототехника</h3>
+                            <p>Наставник: Елдос устаз | ПН, СР - 17:00</p>
+                        </div>
+                        <div class="club-controls">
+                            <div class="credit-display">
+                                <div class="credit-badge">
+                                    <span class="credit-value">18</span>
+                                    <span class="credit-label">баллов</span>
+                                </div>
+                            </div>
+                            <button class="club-join-btn joined">✓ Участник</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ORDS -->
+                <section id="ords" class="section">
+                    <h2>🏛️ Орды школы</h2>
+                    
+                    <h3 style="color: #8a7aa0; margin-bottom: 20px;">Рейтинг орд</h3>
+                    <div class="ords-grid" id="ordsGrid"></div>
+
+                    <h3 style="color: #8a7aa0; margin-top: 30px; margin-bottom: 20px;">📅 Мероприятия с ордой</h3>
+                    <div id="ordEvents"></div>
+                </section>
+
+                <!-- CALENDAR -->
+                <section id="calendar" class="section">
+                    <h2>📅 Календарь СОРов и СОЧов</h2>
+                    
+                    <div id="calendarContent"></div>
+                </section>
+
+                <!-- GRADES -->
+                <section id="grades" class="section">
+                    <h2>📊 Оценки и успеваемость</h2>
+                    
+                    <h3 style="color: #8a7aa0; margin-top: 20px; margin-bottom: 15px;">Математика:</h3>
+                    <div style="background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%); color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <p>📌 Контрольная работа: <strong>5</strong> (18.02.2025)</p>
+                        <p>📌 Самостоятельная: <strong>5</strong> (16.02.2025)</p>
+                        <p>📌 Домашнее задание: <strong>4</strong> (15.02.2025)</p>
+                    </div>
+
+                    <h3 style="color: #8a7aa0; margin-top: 20px; margin-bottom: 15px;">Русский язык:</h3>
+                    <div style="background: linear-gradient(135deg, #9b8ab8 0%, #8a7aa0 100%); color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                        <p>📌 Сочинение: <strong>4</strong> (17.02.2025)</p>
+                        <p>📌 Диктант: <strong>5</strong> (14.02.2025)</p>
+                        <p>📌 Тест: <strong>4</strong> (12.02.2025)</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <h3>📅 Календарь событий</h3>
+                <div class="sidebar-item">
+                    <strong>24 февраля</strong>
+                    День защитника Отечества
+                </div>
+                <div class="sidebar-item">
+                    <strong>25 февраля</strong>
+                    СОР по алгебре
+                </div>
+                <div class="sidebar-item">
+                    <strong>26 февраля</strong>
+                    Посиделка Кумис орда
+                </div>
+                <div class="sidebar-item">
+                    <strong>28 февраля</strong>
+                    День открытых дверей
+                </div>
+
+                <h3 style="margin-top: 30px;">👥 Контакты администрации</h3>
+                <div class="control-item">
+                    <strong>Директор:</strong>
+                    +7 788 902-34-78
+                </div>
+                <div class="control-item">
+                    <strong>Завуч:</strong>
+                    +7 705 456-56-76
+                </div>
+                <div class="control-item">
+                    <strong>Ментор орды:</strong>
+                    +7 787 605-76-76
+                </div>
+
+                <h3 style="margin-top: 30px;">🔔 Объявления</h3>
+                <div class="sidebar-item">
+                    <strong>Внимание!</strong>
+                    Регистрация на дежурство орды
+                </div>
+                <div class="sidebar-item">
+                    <strong>Важно:</strong>
+                    Новое положение о ордах школы
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="floating-buttons">
+        <button class="float-btn float-messenger" onclick="openModal('messenger', 'Чат класса')">💬</button>
+        <button class="float-btn float-polls" onclick="openModal('polls', 'Создать опрос')">📊</button>
+    </div>
+
+    <!-- ACHIEVEMENT NOTIFICATION -->
+    <div id="achievementNotif" class="achievement-unlock"></div>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // ORD COLORS
+        const ordColors = {
+            'Ақ': '#FFFFFF',
+            'Көк': '#1E90FF',
+            'Күрең': '#8B4513',
+            'Қоңыр': '#A0522D',
+            'Күлгін': '#DDA0DD',
+            'Жасыл': '#228B22',
+            'Алтын': '#FFD700',
+            'Сары': '#FFFF00',
+            'Қола': '#B87333',
+            'Көгілдір': '#87CEEB',
+            'Сұр': '#808080',
+            'Күміс': '#C0C0C0',
+            'Қызыл': '#DC143C',
+            'Қызғылт': '#FF6347',
+            'Қара': '#000000',
+            'Боз': '#A9A9A9'
+        };
+
+        const ordNames = Object.keys(ordColors);
+
+        // GENERATE ORDS
+        function generateOrds() {
+            const ordsGrid = document.getElementById('ordsGrid');
+            const ords = [];
+            
+            for (let i = 0; i < 16; i++) {
+                const name = ordNames[i];
+                const points = Math.floor(Math.random() * 500) + 100;
+                ords.push({ name, points, color: ordColors[name] });
+            }
+
+            ords.sort((a, b) => b.points - a.points);
+
+            ordsGrid.innerHTML = ords.map((ord, index) => `
+                <div class="ord-card" style="background: ${ord.color}; ${ord.color === '#FFFFFF' || ord.color === '#FFFF00' ? 'color: #333; border: 2px solid #999;' : 'color: white;'}">
+                    <div class="rank">#${index + 1}</div>
+                    <h3>${ord.name} орда</h3>
+                    <div class="points">📊 ${ord.points} баллов</div>
+                </div>
+            `).join('');
+        }
+
+        // GENERATE ORD EVENTS
+        function generateOrdEvents() {
+            const ordEvents = document.getElementById('ordEvents');
+            const events = [
+                { ord: 'Кумис', event: 'Посиделка с ордой', location: 'Кухня 1', time: '19:30', date: '26 февраля' },
+                { ord: 'Қайта', event: 'Дежурство орды', location: 'Главный холл', time: '08:00', date: '27 февраля' },
+                { ord: 'Ақ', event: 'Встреча лидеров орд', location: 'Кабинет 405', time: '16:00', date: '28 февраля' },
+                { ord: 'Көк', event: 'Спортивные игры орды', location: 'Спортзал', time: '15:30', date: '1 марта' }
+            ];
+
+            ordEvents.innerHTML = events.map(e => `
+                <div class="event-item">
+                    <h4>🎉 ${e.event}</h4>
+                    <p><strong>Орда:</strong> ${e.ord} орда</p>
+                    <p><strong>📍 Место:</strong> ${e.location}</p>
+                    <p><strong>⏰ Время:</strong> ${e.time}</p>
+                    <p><strong>📅 Дата:</strong> ${e.date}</p>
+                </div>
+            `).join('');
+        }
+
+        // GENERATE CALENDAR
+        function generateCalendar() {
+            const calendarContent = document.getElementById('calendarContent');
+            const exams = [
+                { type: 'СОР', subject: 'Математика', date: '25 февраля', time: '09:00' },
+                { type: 'СОР', subject: 'Русский язык', date: '26 февраля', time: '10:00' },
+                { type: 'СОЧ', subject: 'Английский язык', date: '1 марта', time: '11:00' },
+                { type: 'СОР', subject: 'Биология', date: '3 марта', time: '09:30' },
+                { type: 'СОЧ', subject: 'История', date: '5 марта', time: '10:00' },
+                { type: 'СОР', subject: 'Информатика', date: '6 марта', time: '14:00' }
+            ];
+
+            calendarContent.innerHTML = `
+                <h3 style="color: #8a7aa0; margin-top: 20px; margin-bottom: 15px;">Предстоящие проверочные работы</h3>
+                ${exams.map(exam => `
+                    <div class="event-item">
+                        <h4>${exam.type === 'СОР' ? '📝' : '📋'} ${exam.type} - ${exam.subject}</h4>
+                        <p><strong>📅 Дата:</strong> ${exam.date}</p>
+                        <p><strong>⏰ Время:</strong> ${exam.time}</p>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        // NAVIGATION
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const sectionId = btn.getAttribute('data-section');
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        // MODAL FUNCTIONS
+        function openModal(type, title) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            modalTitle.textContent = title;
+
+            if (type === 'lesson') {
+                modalBody.innerHTML = `
+                    <p><strong>📍 Место проведения:</strong> Кабинет 302</p>
+                    <p><strong>⏰ Время:</strong> 09:00 - 09:45</p>
+                    <p><strong>👨‍🏫 Учитель:</strong> Макпал устаз</p>
+                    <div class="teacher-info">
+                        <p><strong>Контакт учителя:</strong> makpal@edu.kz</p>
+                        <p><strong>Кабинет:</strong> 302</p>
+                        <p><strong>Часы приёма:</strong> Вт, Чт 16:00-17:00</p>
+                    </div>
+                    <p><strong>📚 Тема урока:</strong> Изучение новой темы и закрепление материала</p>
+                    <p><strong>✏️ Задание:</strong> Подготовьте конспект и выполните упражнения</p>
+                `;
+            } else if (type === 'homework') {
+                modalBody.innerHTML = `
+                    <p><strong>📚 Предмет:</strong> Домашнее задание</p>
+                    <p><strong>📝 Описание:</strong> Выполнить все указанные задания согласно учебнику</p>
+                    <p><strong>⏰ Срок сдачи:</strong> До 25 февраля 2025</p>
+                    <ul>
+                        <li>Прочитайте условия задач</li>
+                        <li>Решите примеры пошагово</li>
+                        <li>Проверьте свои ответы</li>
+                        <li>Оформите работу аккуратно</li>
+                    </ul>
+                `;
+            } else if (type === 'messenger') {
+                modalBody.innerHTML = `
+                    <h3>💬 Чат класса 9 "С"</h3>
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; height: 300px; overflow-y: auto; margin-bottom: 15px;">
+                        <div style="background: white; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                            <p><strong>Макпал устаз:</strong> Домашнее задание на завтра - упражнения 45-50</p>
+                            <p style="font-size: 0.8em; color: #999;">21:30</p>
+                        </div>
+                        <div style="background: white; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                            <p><strong>Диана устаз:</strong> Не забудьте про СОР в пятницу!</p>
+                            <p style="font-size: 0.8em; color: #999;">20:15</p>
+                        </div>
+                        <div style="background: white; padding: 10px; border-radius: 5px;">
+                            <p><strong>Азамат устаз:</strong> Параграфы 15-17 к понедельнику</p>
+                            <p style="font-size: 0.8em; color: #999;">19:00</p>
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Напишите сообщение..." style="width: 100%;">
+                    <button style="width: 100%; margin-top: 10px;">Отправить</button>
+                `;
+            } else if (type === 'polls') {
+                modalBody.innerHTML = `
+                    <h3>📊 Создать опрос</h3>
+                    <p style="color: #666; margin-bottom: 15px;">Используйте эту функцию для проведения опросов среди учеников</p>
+                    <input type="text" placeholder="Вопрос опроса..." style="width: 100%;">
+                    <div style="margin-top: 15px;">
+                        <label style="display: block; margin-bottom: 10px;">
+                            <strong>Варианты ответов:</strong>
+                        </label>
+                        <input type="text" placeholder="Вариант 1" style="width: 100%; margin-bottom: 8px;">
+                        <input type="text" placeholder="Вариант 2" style="width: 100%; margin-bottom: 8px;">
+                        <input type="text" placeholder="Вариант 3" style="width: 100%; margin-bottom: 8px;">
+                        <input type="text" placeholder="Вариант 4" style="width: 100%; margin-bottom: 8px;">
+                    </div>
+                    <button style="width: 100%; margin-top: 15px;">Создать опрос</button>
+                `;
+            }
+
+            modal.classList.add('show');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('show');
+        }
+
+        // CLOSE MODAL ON OUTSIDE CLICK
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // INIT
+        generateOrds();
+        generateOrdEvents();
+        generateCalendar();
+    </script>
+</body>
+</html>
